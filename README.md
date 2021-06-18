@@ -218,5 +218,5 @@ Tambahkan fungsi/method baru pada Controller Artikel dengan nama delete().
 ## Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi.
 
 ## Jawab
-Saya telah menyelesaikan program diatas sehingga bisa berjalan dengan baik dan benar. 
+Saya telah menyelesaikan program diatas sehingga semua programnya bisa berjalan dengan baik dan benar. 
 

@@ -126,33 +126,39 @@ Lengkapi kode program untuk menu lainnya yang ada pada Controller Page, sehingga
 ## Langkah-langkah praktikum
 
 Pastikan MySQL server sudah berjalan dan buat sebuah database sebagai berikut:
-![image](https://user-images.githubusercontent.com/56379905/122574031-6e97e280-d079-11eb-827a-967d1bb3a494.png)
+![image](https://user-images.githubusercontent.com/56379905/123013690-e0ac5680-d3ee-11eb-9221-f87414445ae1.png)
+
 
 ## Langkah 1 
 ## Konfigurasi Database
 Membuat konfigurasi hubungan ke database server dengan menggunakan file .env.
-![image](https://user-images.githubusercontent.com/56379905/122574176-971fdc80-d079-11eb-875a-8657d58275b0.png)
+![image](https://user-images.githubusercontent.com/56379905/123013979-73e58c00-d3ef-11eb-8ae3-6604401a287a.png)
+
 
 ## Langkah 2 
 ## Membuat Model
 Buat file baru pada direktori /app/Models dengan nama ArtikelModel.php
-![image](https://user-images.githubusercontent.com/56379905/122574269-b0288d80-d079-11eb-8137-c734f5eafea9.png)
+![image](https://user-images.githubusercontent.com/56379905/123014072-a5f6ee00-d3ef-11eb-8729-b11f6a03edf9.png)
+
 
 ## Langkah 3 
 ## Membuat Controller
 Buat Controller baru dengan nama Artikel.php pada direktori /app/Controllers.
-![image](https://user-images.githubusercontent.com/56379905/122574376-cb939880-d079-11eb-93f7-d88f4e89917a.png)
+![image](https://user-images.githubusercontent.com/56379905/123014132-bf983580-d3ef-11eb-87ce-5e8957ad5a16.png)
+
 
 ## Langkah 4 
 ## Membuat View
 Buat direktori baru dengan nama artikel pada direktori /app/Views, kemudian buat file baru dengan nama index.php.
-![image](https://user-images.githubusercontent.com/56379905/122574496-e6fea380-d079-11eb-9966-4a12200b6015.png)
+![image](https://user-images.githubusercontent.com/56379905/123015102-d770b900-d3f1-11eb-985b-bdd8cb0ad78f.png)
+
 Lalu buka alamat http://localhost:8080/artikel untuk melihat hasilnya.
 Tidak ada data yang ditampilkan karena database masih kosong.
 ![image](https://user-images.githubusercontent.com/56379905/122574879-54123900-d07a-11eb-95e2-b91b5f5afbc1.png)
 
 Tambahkan data pada database untuk ditampilkan datanya.
-![image](https://user-images.githubusercontent.com/56379905/122575311-d1d64480-d07a-11eb-9c26-29497b60f123.png)
+![image](https://user-images.githubusercontent.com/56379905/123015230-16067380-d3f2-11eb-975f-fa24f090e7e1.png)
+
 ketikaa di refresh akan muncul tampilan seperti ini.
 ![image](https://user-images.githubusercontent.com/56379905/122575475-00541f80-d07b-11eb-8473-06eb8431de9c.png)
 
@@ -160,18 +166,21 @@ ketikaa di refresh akan muncul tampilan seperti ini.
 ## Membuat Tampilan Detail Artikel
 Tampilan pada saat judul berita di klik maka akan diarahkan ke halaman yang berbeda. 
 Tambahkan sebuah fungsi baru pada Controller Artikel (/app/Controllers/Artikel.php) dengan nama view().
-![image](https://user-images.githubusercontent.com/56379905/122575620-22e63880-d07b-11eb-943b-b296940a4441.png)
+![image](https://user-images.githubusercontent.com/56379905/123015314-42ba8b00-d3f2-11eb-92e1-834cd826d951.png)
+
 
 ## Langkah 6 
 ## Membuat View Detail
 Buat file baru dalam folder artikel (/app/Views/artikel/) dengan nama detail.php untuk menampilkan halaman detail.
-![image](https://user-images.githubusercontent.com/56379905/122575714-385b6280-d07b-11eb-9e5b-7a72e1bc508d.png)
+![image](https://user-images.githubusercontent.com/56379905/123016098-14d64600-d3f4-11eb-82ab-b72de5e8277d.png)
+
 
 ## Langkah 7 
 ## Membuat Route
 Buka file Routes.php dalam folder (/app/Config/) dan tambahkan routing untuk ke halaman detail artikel.
 $routes->get('/artikel/(:any)', 'Artikel::view/$1');
-![image](https://user-images.githubusercontent.com/56379905/122575816-4f01b980-d07b-11eb-9a5e-3e1329dbd084.png)
+![image](https://user-images.githubusercontent.com/56379905/123016193-418a5d80-d3f4-11eb-81a9-63119af57afa.png)
+
 Maka akan tampil halaman dari artikel yang diklik.
 ![image](https://user-images.githubusercontent.com/56379905/122575896-5fb22f80-d07b-11eb-8357-47414060f815.png)
 

@@ -229,3 +229,76 @@ Tambahkan fungsi/method baru pada Controller Artikel dengan nama delete().
 ## Jawab
 Saya telah menyelesaikan program diatas sehingga semua programnya bisa berjalan dengan baik dan benar. 
 
+
+
+## Lab11Web
+## Praktikum 13
+## Nama : Sriyati Asni
+## NIM : 311910697
+## Kelas : TI. 19. A2
+
+## Langkah-langkah praktikum
+
+## 1. Persiapan
+Pastikan MySQL Server sudah dapat dijalankan melalui XAMPP.
+## Langkah 2.
+## Membuat Tabel User Login
+Masukan kode berikut pada database :
+
+![ss 5 (2)](https://user-images.githubusercontent.com/56379905/123605715-5583f400-d826-11eb-9ef0-6905acac1625.png)
+## Langkah 3.
+##  Membuat Model User
+Buat file baru pada direktori app/Models dengan nama UserModel.php, seperti berikut :
+![ss 2 (2)](https://user-images.githubusercontent.com/56379905/123606295-f7a3dc00-d826-11eb-9ec3-de1a2845d2c7.png)
+## Langkah 4. 
+## Membuat Controller User
+Buat Controller baru dengan nama User.php pada direktori app/Controllers. kemudian tambahkan fungsi index() sebagai berikut :
+![ss 6 (2)](https://user-images.githubusercontent.com/56379905/123606875-8a447b00-d827-11eb-970d-94e00267b4d9.png)
+![ss 6 1 (2)](https://user-images.githubusercontent.com/56379905/123607023-b3650b80-d827-11eb-87d2-f0ec51447323.png)
+## Langkah 5. 
+## Membuat View Login
+Buat direktori baru dengan nama user pada direktori app/views, kemudian buat file baru dengan nama login.php. Dengan kode berikut :
+![ss 7 (2)](https://user-images.githubusercontent.com/56379905/123607767-62094c00-d828-11eb-907e-61cde52808c2.png)
+## Langkah 6. 
+## Membuat Database Seeder
+Buka CLI dan masukan kode "php spark make:seeder UserSeeder", 
+
+Lalu buka file UserSeeder.php yang berada di lokasi direktori /app/Database/Seeds/UserSeeder.php kemudian isi dengan kode berikut:
+![ss 8 (2)](https://user-images.githubusercontent.com/56379905/123611135-7b5fc780-d82b-11eb-93b1-abea4f5f048a.png)
+Selanjutnya buka kembali CLI dan ketik perintah "php spark db:seed UserSeeder" , 
+
+## Hasil Uji Coba Login :
+![ss 3 3 (2)](https://user-images.githubusercontent.com/56379905/123612511-d0e8a400-d82c-11eb-86b3-662eaae95d23.png)
+
+## Langkah 7.
+## Menambahkan Auth Filter
+Selanjutnya membuat filer untuk halaman admin. Buat file baru dengan nama Auth.php pada direktori app/Filters. berikut :
+
+![ss 9 (2)](https://user-images.githubusercontent.com/56379905/123612905-2a50d300-d82d-11eb-80c2-ba4c06035eda.png)
+
+Selanjutnya buka file app/Config/Filters.php tambahkan kode berikut:
+ 
+ ![ss 10 (2)](https://user-images.githubusercontent.com/56379905/123613584-c084f900-d82d-11eb-88e7-39c1280a55cb.png)
+
+Selanjutnya buka file app/Config/Routes.php dan sesuaikan kode berikut :
+
+![ss 11 (2)](https://user-images.githubusercontent.com/56379905/123614491-954ed980-d82e-11eb-803a-0fc3bdd6eb43.png)
+
+## Langkah 8. 
+## Percobaan menu akses LOGIN
+Buka url dengan alamat http://localhost:8080/admin/artikel ketika alamat tersebut diakses maka akan ditarik ke halaman login berikut :
+![ss 3 3 (2)](https://user-images.githubusercontent.com/56379905/123614690-c0392d80-d82e-11eb-9d4f-b7f25262ee7c.png)
+
+## Langkah 9. 
+## Membuat Fungsi LOGOUT
+Tambahkan method logout pada Controller User seperti berikut :
+
+![ss 4 (2)](https://user-images.githubusercontent.com/56379905/123614859-ed85db80-d82e-11eb-8c43-dc7281cd337c.png)
+
+## Pertanyaan dan Tugas
+## Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi.
+
+## Jawab
+## Saya telah menyelesaikan programnya sesuai step-stepnya sehingga programnya dapat berjalan dengan baik.
+
+

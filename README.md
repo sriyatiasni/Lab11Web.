@@ -324,7 +324,6 @@ public function admin_index()
 }
 
 ![ss 1](https://user-images.githubusercontent.com/56379905/124598018-5d7b0e00-de8e-11eb-9da7-e660d615e402.png)
-
 Kemudian buka file views/artikel/admin_index.php dan tambahkan kode berikut dibawah deklarasi tabel data.
 
 <?= $pager->links(); ?>
@@ -405,13 +404,11 @@ Kemudian buka kembali file views/artikel/admin_index.php dan tambahkan form penc
 </form>
 
 ![ss 5](https://user-images.githubusercontent.com/56379905/124598939-5c96ac00-de8f-11eb-9ec7-60beeedcd06a.png)
-
 Dan pada link pager ubah seperti berikut.
 
 <?= $pager->only(['q'])->links(); ?>
 
 ![ss 6](https://user-images.githubusercontent.com/56379905/124599010-6d472200-de8f-11eb-90b1-70dd2fac0862.png)
-
 Kemudian buka file public/admin.css tambahkan kode berikut untuk mempercantik tampilan pencarian
 
 /* SEARCH */
@@ -438,7 +435,6 @@ Kemudian buka file public/admin.css tambahkan kode berikut untuk mempercantik ta
 }
 
 ![ss 7](https://user-images.githubusercontent.com/56379905/124599149-8a7bf080-de8f-11eb-8aa1-1147b41b26db.png)
-
 Selanjutnya ujicoba dengan membuka kembali halaman admin artikel
 
 ![output2](https://user-images.githubusercontent.com/56379905/124599402-d5960380-de8f-11eb-847d-d730ad82a6bc.png)

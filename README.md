@@ -302,3 +302,204 @@ Tambahkan method logout pada Controller User seperti berikut :
 ## Saya telah menyelesaikan programnya sesuai step-stepnya sehingga programnya dapat berjalan dengan baik.
 
 
+## Praktikum 14
+## Nama : Sriyati Asni
+## NIM : 311910697
+## Kelas : TI. 19. A2
+
+## Langkah 1 
+## Membuat Pagination
+Pagination merupakan proses yang digunakan untuk membatasi tampilan yang panjang dari data yang banyak pada sebuah website. Untuk membuat pagination, buka Kembali Controller Artikel (htdocs\lab11_php_ci\ci4\Controllers\Artikel.php), kemudian modifikasi kode pada method admin_index seperti berikut.
+
+public function admin_index()
+{
+	 $title = 'Daftar Artikel';
+	 $model = new ArtikelModel();
+	 $data = [
+	 'title' => $title,
+	 'artikel' => $model->paginate(10), #data dibatasi 10 record perhalaman
+	 'pager' => $model->pager,
+	 ];
+	 return view('artikel/admin_index', $data);
+}
+
+![ss 1](https://user-images.githubusercontent.com/56379905/124598018-5d7b0e00-de8e-11eb-9da7-e660d615e402.png)
+
+Kemudian buka file views/artikel/admin_index.php dan tambahkan kode berikut dibawah deklarasi tabel data.
+
+<?= $pager->links(); ?>
+
+![ss 2](https://user-images.githubusercontent.com/56379905/124598132-7edbfa00-de8e-11eb-8cef-60ad0e04dea6.png)
+
+Kemudian buka file public/admin.css tambahkan kode berikut untuk mempercantik tampilan pagination
+
+/* PAGINATION */
+.pagination {
+    display: inline-block;
+    padding-left: 20px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: .25rem;
+}
+  
+.pagination > li {
+    display: inline;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    position: relative;
+    float: left;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.5;
+    color: #0275d8;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #0275d8;
+    border-color: #0275d8;
+}
+
+![ss 3](https://user-images.githubusercontent.com/56379905/124598302-a92db780-de8e-11eb-8d29-0d37b85bc688.png)
+
+Selanjutnya buka kembali menu daftar artikel, tambahkan data lagi untuk melihat hasilnya.
+
+![output1](https://user-images.githubusercontent.com/56379905/124598677-104b6c00-de8f-11eb-94bd-6ca5ec09dcb3.png)
+
+## Langkah 2 
+## Membuat Pencarian
+Untuk membuat pencarian data, buka kembali Controller Artikel (htdocs\lab11_php_ci\ci4\Controllers\Artikel.php), pada method admin_index ubah kodenya seperti berikut
+
+public function admin_index()
+{
+	 $title = 'Daftar Artikel';
+	 $q = $this->request->getVar('q') ?? '';
+	 $model = new ArtikelModel();
+	 $data = [
+	 'title' => $title,
+	 'q' => $q,
+	 'artikel' => $model->like('judul', $q)->paginate(2), # data dibatasi 2 record per halaman
+	 'pager' => $model->pager,
+	 ];
+	 return view('artikel/admin_index', $data);
+}
+
+![ss 4](https://user-images.githubusercontent.com/56379905/124598857-47ba1880-de8f-11eb-8524-004fd5777324.png)
+
+Kemudian buka kembali file views/artikel/admin_index.php dan tambahkan form pencarian sebelum deklarasi tabel seperti berikut:
+
+<form method="get" class="form-search">
+   <input type="text" name="q" value="<?= $q; ?>" placeholder="Cari data">
+   <input type="submit" value="Cari" class="btn btn-primary">
+</form>
+
+![ss 5](https://user-images.githubusercontent.com/56379905/124598939-5c96ac00-de8f-11eb-9ec7-60beeedcd06a.png)
+
+Dan pada link pager ubah seperti berikut.
+
+<?= $pager->only(['q'])->links(); ?>
+
+![ss 6](https://user-images.githubusercontent.com/56379905/124599010-6d472200-de8f-11eb-90b1-70dd2fac0862.png)
+
+Kemudian buka file public/admin.css tambahkan kode berikut untuk mempercantik tampilan pencarian
+
+/* SEARCH */
+.form-search input[type=text]{
+    width: 27%;
+    border: 2px solid gray;
+    box-sizing: border-box;
+    font-size: 15px;
+    margin: 30px;
+    margin-bottom: 10px;
+}
+
+.btn-primary{
+    background-color: rgb(30, 117, 216);
+    color: white;
+    box-sizing: border-box;
+    font-size: 15px;
+    margin: auto;   
+}
+
+.btn-primary:active,
+.btn-primary:hover{
+    opacity: 80%;
+}
+
+![ss 7](https://user-images.githubusercontent.com/56379905/124599149-8a7bf080-de8f-11eb-8aa1-1147b41b26db.png)
+
+Selanjutnya ujicoba dengan membuka kembali halaman admin artikel
+
+![output2](https://user-images.githubusercontent.com/56379905/124599402-d5960380-de8f-11eb-847d-d730ad82a6bc.png)
+
+## Langkah 3 
+## Upload Gambar
+Menambahkan fungsi unggah gambar pada tambah artikel. Buka kembali Controller Artikel (htdocs\lab11_php_ci\ci4\Controllers\Artikel.php), sesuaikan kode pada method add seperti berikut:
+
+public function add()
+    {
+        // validasi data.
+        $validation = \Config\Services::validation();
+        $validation->setRules(['judul' => 'required']);
+        $isDataValid = $validation->withRequest($this->request)->run();
+        
+        if ($isDataValid)
+        {
+            $file = $this->request->getFile('gambar');
+            $file->move(ROOTPATH . 'public/gambar');
+            
+            $artikel = new ArtikelModel();
+            $artikel->insert([
+                'judul' => $this->request->getPost('judul'),
+                'isi' => $this->request->getPost('isi'),
+                'slug' => url_title($this->request->getPost('judul')),
+                'gambar' => $file->getName(),
+            ]);
+            return redirect('admin/artikel');
+        }
+        $title = "Tambah Artikel";
+        return view('artikel/form_add', compact('title'));
+    }
+    
+    ![ss 8](https://user-images.githubusercontent.com/56379905/124599603-0bd38300-de90-11eb-9c51-8d56e714daa2.png)
+
+Kemudian pada file views/artikel/form_add.php tambahkan field input file seperti berikut.
+
+ <p>
+      <input type="file" name="gambar">
+ </p>
+
+Dan sesuaikan tag form dengan menambahkan ecrypt type seperti berikut.
+
+<form action="" method="post" enctype="multipart/form-data">
+ 
+ ![ss 9](https://user-images.githubusercontent.com/56379905/124599665-20178000-de90-11eb-9a44-aa1ebed091af.png)
+
+ Kemudian buka file public/admin.css tambahkan kode berikut untuk mempercantik tampilan tomboll upload gambar
+
+/* INPUT GAMBAR */
+input[type=file]{
+    margin: 20px;
+}
+ 
+ ![ss 10](https://user-images.githubusercontent.com/56379905/124599722-2d346f00-de90-11eb-81e9-b510717cec6c.png)
+
+ Ujicoba file upload dengan mengakses menu tambah artikel.
+ 
+ ![output3](https://user-images.githubusercontent.com/56379905/124599963-71277400-de90-11eb-809f-09230bf36ad4.png)
+
+
+
+
+
